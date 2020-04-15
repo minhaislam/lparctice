@@ -11,6 +11,7 @@ class UserController extends Controller
 {
      public function index(Request $req){
         $users = DB::table('add_info')->get();
+
         return view('user.index',['std'=> $users]);
     }
 

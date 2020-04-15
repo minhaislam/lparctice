@@ -24,7 +24,7 @@
   <label for="country">Country:</label>
   <select id="country" name="country">
     <option value="" selected="selected">Choose one</option>
-  	@foreach($std as $s)
+  	@foreach($std->unique('country') as $s)
   		@if($s->admin_name != NULL)
       <option value="{{$s->country}}">{{$s->country}}</option>
       @endif
@@ -33,7 +33,7 @@
    <label for="city">City:</label>
   <select id="city" name="city">
     <option value="" selected="selected">Choose one</option>
-  	@foreach($std as $s)
+  	@foreach($std->unique('city') as $s)
 		@if($s->admin_name != NULL)
     <option value="{{$s->city}}">{{$s->city}}</option>
     @endif
