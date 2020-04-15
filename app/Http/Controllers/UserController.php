@@ -67,19 +67,19 @@ public function comment($id,Request $req){
         $data = AddInfo::orderBy('country', 'asc');
 
         if (request()->country != '') {
-            $data->orWhere('country', request()->country);
+            $data->where('country', request()->country);
         }
 
         if (request()->city != '') {
-            $data->orWhere('city', request()->city);
+            $data->where('city', request()->city);
         }
         
         if (request()->placename != '') {
-            $data->orWhere('placename', request()->placename);
+            $data->where('placename', request()->placename);
         }
         
         if (request()->cost != '') {
-            $data->orWhere('cost', '<', request()->cost);
+            $data->where('cost', '<', request()->cost);
         }
 
         return $data->get();
