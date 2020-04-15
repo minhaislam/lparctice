@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\AddInfo;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -64,18 +65,16 @@ public function comment($id,Request $req){
 
     public function search(){
 
-        dd(requesst()->all());
-        
-        $user = DB::table('add_info')
-                    ->where('country', $req->country)
-                    ->where('city', $req->city)
-                    ->where('placename', $req->placename)
-                    ->where('cost','<', $req->cost or 'cost','>', $req->cost)
-                    ->get();
-        
-        if($user != null){                                
-                return redirect()->route('user.searchresult',['s' => $user]);
-        }
+        $data = AddInfo::orWhere('country', request()->country)
+            ->orWhere('city', request()->city)
+            ->orWhere('placename', request()->placename)
+            // ->orWhere('cost', "<", request()->cost)
+            // ->whereBetween('cost', [1000, 10000])
+            // https://laravel.com/docs/7.x/queries#where-clauses
+            ->get();
+
+        return $data;
+    
     }
 
 }

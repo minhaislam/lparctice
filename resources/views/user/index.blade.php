@@ -20,18 +20,19 @@
 @endforeach
 <h3>Search</h3>
 
-<form action="POST">
-	<input type="hidden" name="_token" value="{{csrf_token()}}">
+<form method="GET" action="{{ route('user.searchresult') }}">
   <label for="country">Country:</label>
   <select id="country" name="country">
+    <option value="" selected="selected">Choose one</option>
   	@foreach($std as $s)
-		@if($s->admin_name != NULL)
-    <option value="{{$s->country}}">{{$s->country}}</option>
-    @endif
-@endforeach
+  		@if($s->admin_name != NULL)
+      <option value="{{$s->country}}">{{$s->country}}</option>
+      @endif
+    @endforeach
   </select>
    <label for="city">City:</label>
   <select id="city" name="city">
+    <option value="" selected="selected">Choose one</option>
   	@foreach($std as $s)
 		@if($s->admin_name != NULL)
     <option value="{{$s->city}}">{{$s->city}}</option>
@@ -40,6 +41,7 @@
   </select>
    <label for="placename">placename:</label>
   <select id="placename" name="placename">
+    <option value="" selected="selected">Choose one</option>
   	@foreach($std as $s)
 		@if($s->admin_name != NULL)
     <option value="{{$s->placename}}">{{$s->placename}}</option>
@@ -48,10 +50,10 @@
   </select>
   <label for="cost">cost:</label>
   <select id="cost" name="cost">
-  
-    <option value="1000"><1000</option>
-     <option value="10000"><10000</option>
-      <option value="10000">10000<</option>
+    <option value="" selected="selected">Choose one</option>
+    <option value="1000">1000</option>
+    <option value="10000">10000</option>
+    <option value="10000">10000</option>
    
   </select>
  
