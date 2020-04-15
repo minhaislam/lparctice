@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
      public function index(Request $req){
-        
         $users = DB::table('add_info')->get();
         return view('user.index',['std'=> $users]);
     }
@@ -63,7 +62,9 @@ public function comment($id,Request $req){
     }
 
 
-    public function search(Request $req){
+    public function search(){
+
+        dd(requesst()->all());
         
         $user = DB::table('add_info')
                     ->where('country', $req->country)
