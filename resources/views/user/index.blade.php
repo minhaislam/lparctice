@@ -53,7 +53,7 @@
     <option value="" selected="selected">Choose one</option>
     <option value="1000">1000</option>
     <option value="10000">10000</option>
-    <option value="10000">10000</option>
+    <option value="100000">100000</option>
    
   </select>
  

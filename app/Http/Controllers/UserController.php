@@ -64,16 +64,25 @@ public function comment($id,Request $req){
 
 
     public function search(){
+        $data = AddInfo::orderBy('country', 'asc');
 
-        $data = AddInfo::orWhere('country', request()->country)
-            ->orWhere('city', request()->city)
-            ->orWhere('placename', request()->placename)
-            // ->orWhere('cost', "<", request()->cost)
-            // ->whereBetween('cost', [1000, 10000])
-            // https://laravel.com/docs/7.x/queries#where-clauses
-            ->get();
+        if (request()->country != '') {
+            $data->orWhere('country', request()->country);
+        }
 
-        return $data;
+        if (request()->city != '') {
+            $data->orWhere('city', request()->city);
+        }
+        
+        if (request()->placename != '') {
+            $data->orWhere('placename', request()->placename);
+        }
+        
+        if (request()->cost != '') {
+            $data->orWhere('cost', '<', request()->cost);
+        }
+
+        return $data->get();
     
     }
 
