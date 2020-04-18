@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class SessionVerify
+class UserTypeValidation
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,11 @@ class SessionVerify
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->session()->has('user')) {
-            return redirect('/login');
-        } else {
-            return $next($request);
+        if ($request->path() !== $request->session()->get('user')->type) {
+            return redirect()
+                ->back();
         }
+
+        return $next($request);
     }
 }
