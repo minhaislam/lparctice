@@ -84,7 +84,6 @@ public function comment($id,Request $req){
         }
 
         return $data->get();
-    
     }
 
 }
